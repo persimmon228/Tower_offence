@@ -9,8 +9,13 @@ ATurrentPawn::ATurrentPawn()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	SetRootComponent(Hitbox);
 	Hitbox = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
+	Hitbox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	Hitbox->SetCollisionResponseToAllChannels(ECR_Ignore);
+	Hitbox->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+	RootComponent = Hitbox;
+	SetRootComponent(Hitbox);
+	
 
 	MyBaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BaseMesh"));
 	MyBaseMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
