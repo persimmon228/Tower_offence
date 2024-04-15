@@ -4,8 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "TurrentPawn.h"
+#include "Engine/World.h"
+#include "Engine/EngineTypes.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/PlayerController.h"
 #include "TankPawn.generated.h"
 
 /**
@@ -20,14 +23,21 @@ public:
 
 	ATankPawn();
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Inputs")
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
 	void Move(float DistansToMove);
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Inputs")
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
 	void Turn(float Rotation);
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Inputs")
 	void Fire();
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void TurrentRotation();
+
+protected:
+
+public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cam")
 	TObjectPtr<USpringArmComponent> SpringArm;

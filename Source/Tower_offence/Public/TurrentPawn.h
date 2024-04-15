@@ -19,28 +19,28 @@ public:
 	// Sets default values for this pawn's properties
 	ATurrentPawn();
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
-	TObjectPtr<UStaticMeshComponent> MyBaseMesh;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Capsule")
-	TObjectPtr<UCapsuleComponent> Hitbox;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
-	TObjectPtr<UStaticMeshComponent> MyTurretMesh;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SceneComponent")
-	TObjectPtr<USceneComponent> MyProjectileSpawnPoint;
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Capsule")
+	TObjectPtr<UCapsuleComponent> Hitbox;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	TObjectPtr<UStaticMeshComponent> MyBaseMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	TObjectPtr<UStaticMeshComponent> MyTurretMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SceneComponent")
+	TObjectPtr<USceneComponent> MyProjectileSpawnPoint;
 
 };
