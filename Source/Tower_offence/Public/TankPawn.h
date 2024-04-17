@@ -35,6 +35,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Inputs")
 	void TurrentRotation();
 
+	virtual void Tick(float DeltaTime) override;
+
 protected:
 
 public:

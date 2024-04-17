@@ -23,23 +23,32 @@ ATankPawn::ATankPawn()
 
 void ATankPawn::Move(float DistansToMove)
 {
-	FVector ConvertedVector (DistansToMove, 0.0f, 0.0f);
+	FVector ConvertedVector(0.0f, (DistansToMove*10), 0.0f);
 	//Setting new Location
-	this->SetActorLocation((this->GetActorForwardVector() + ConvertedVector));
+	AddActorLocalOffset(ConvertedVector);
 }
 
 void ATankPawn::Turn(float Rotation)
 {
-	FRotator ConvertedVector (Rotation, 0.0f, 0.0f);
+	FRotator ConvertedVector(0.0f, Rotation, 0.0f);
 	//Setting new Rotation
 	this->SetActorRotation((this->GetActorRotation() + ConvertedVector));
 }
 
 void ATankPawn::TurrentRotation()
 {
+	
+}
+
+void ATankPawn::Tick(float DeltaTime)
+{
 	FHitResult HitResult;
 	GetWorld()->GetFirstPlayerController()->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
-	MyTurretMesh->SetWorldRotation(HitResult.ImpactNormal.Rotation());
-	SpringArm->SetWorldRotation(HitResult.ImpactNormal.Rotation());
+	FRotator NewRotation = HitResult.ImpactPoint.Rotation();
+	FRotator CurrentRotation = MyTurretMesh->GetComponentRotation();
+	FRotator RotationDifference = NewRotation - CurrentRotation;
+	RotationDifference *= 0.01f;
+	FRotator FinalRotation = CurrentRotation + RotationDifference;
+	MyTurretMesh->SetWorldRotation(FinalRotation);
 }
 

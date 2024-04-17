@@ -5,6 +5,6 @@
 
 void ATowerPawn::Turn(float Rotation)
 {
-	FRotator NewRotation = MyTurretMesh->GetComponentRotation() + FRotator(Rotation, 0.0f, 0.0f);
+	FRotator NewRotation = MyTurretMesh->GetComponentRotation() + FRotator(0.0f, Rotation, 0.0f);
 	MyTurretMesh->SetWorldRotation(NewRotation);
 }
