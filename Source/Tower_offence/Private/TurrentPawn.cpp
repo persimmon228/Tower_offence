@@ -24,7 +24,7 @@ ATurrentPawn::ATurrentPawn()
 	MyTurretMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
 	MyProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("ProjectileSpawnPoint"));
-	MyProjectileSpawnPoint->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	MyProjectileSpawnPoint->AttachToComponent(MyTurretMesh, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned

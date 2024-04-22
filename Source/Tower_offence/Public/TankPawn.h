@@ -33,7 +33,7 @@ public:
 	void Fire();
 
 	UFUNCTION(BlueprintCallable, Category = "Inputs")
-	void TurrentRotation();
+	void TurrentRotation(float YawValue, float PitchValue);
 
 	virtual void Tick(float DeltaTime) override;
 

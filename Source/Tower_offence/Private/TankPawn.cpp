@@ -35,20 +35,15 @@ void ATankPawn::Turn(float Rotation)
 	this->SetActorRotation((this->GetActorRotation() + ConvertedVector));
 }
 
-void ATankPawn::TurrentRotation()
+void ATankPawn::TurrentRotation(float YawValue, float PitchValue)
 {
-	
+	AddControllerYawInput(YawValue);
+	AddControllerPitchInput(PitchValue);
+	MyTurretMesh->SetWorldRotation((MyTurretMesh->GetComponentRotation() + FRotator(0.0f, (YawValue * 2.5), 0.0f)));
 }
 
 void ATankPawn::Tick(float DeltaTime)
 {
-	FHitResult HitResult;
-	GetWorld()->GetFirstPlayerController()->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
-	FRotator NewRotation = HitResult.ImpactPoint.Rotation();
-	FRotator CurrentRotation = MyTurretMesh->GetComponentRotation();
-	FRotator RotationDifference = NewRotation - CurrentRotation;
-	RotationDifference *= 0.01f;
-	FRotator FinalRotation = CurrentRotation + RotationDifference;
-	MyTurretMesh->SetWorldRotation(FinalRotation);
+
 }
 
