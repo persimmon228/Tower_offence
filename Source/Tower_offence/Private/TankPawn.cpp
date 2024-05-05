@@ -10,7 +10,7 @@ ATankPawn::ATankPawn()
 
 	//Create Spring Arm and Setup Attachment
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraSpringArm"));
-	SpringArm->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	SpringArm->AttachToComponent(MyTurretMesh, FAttachmentTransformRules::KeepRelativeTransform);
 	SpringArm->TargetArmLength = 350.0f;
 	SpringArm->bEnableCameraLag = true;
 	SpringArm->CameraLagSpeed = 1.5f;

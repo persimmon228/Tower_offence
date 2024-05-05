@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "TurrentPawn.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "TowerPawn.generated.h"
 
 /**
@@ -19,4 +20,14 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Moving")
 	void Turn(float Rotation);
+
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void Fire();
+
+	UFUNCTION(BlueprintCallable, Category = "Moving")
+	void AI_PlayerShooting(FVector TargetLocation);
+
+	virtual void Tick(float DeltaTime) override;
+
 };

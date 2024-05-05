@@ -8,6 +8,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SceneComponent.h"
+#include "ProjectileBase.h"
 #include "TurrentPawn.generated.h"
 
 UCLASS()
