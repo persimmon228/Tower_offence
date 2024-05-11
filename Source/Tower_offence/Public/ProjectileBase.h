@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SphereComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "ProjectileBase.generated.h"
 
 UCLASS()
@@ -15,8 +17,7 @@ public:
 	// Sets default values for this actor's properties
 	AProjectileBase();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
-	TObjectPtr<UStaticMeshComponent> Projectile;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,4 +27,17 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void FireInDirection(const FVector& ShootDirection);
+
+
+	UPROPERTY(VisibleDefaultsOnly, Category = Projectile)
+	USphereComponent* CollisionComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	TObjectPtr<UStaticMeshComponent> Projectile;
+
+	UPROPERTY(VisibleAnywhere, Category = Movement)
+	UProjectileMovementComponent* ProjectileMovementComponent;
 };

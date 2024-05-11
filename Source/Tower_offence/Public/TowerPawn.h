@@ -19,15 +19,15 @@ class TOWER_OFFENCE_API ATowerPawn : public ATurrentPawn
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "Moving")
-	void Turn(float Rotation);
+	void Turn(FVector TargetLocation);
 
 
-	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Inputs")
 	void Fire();
 
 	UFUNCTION(BlueprintCallable, Category = "Moving")
 	void AI_PlayerShooting(FVector TargetLocation);
 
-	virtual void Tick(float DeltaTime) override;
+protected:
 
 };

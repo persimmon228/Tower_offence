@@ -3,32 +3,39 @@
 
 #include "TowerPawn.h"
 
-void ATowerPawn::Turn(float Rotation)
+void ATowerPawn::Turn(FVector TargetLocation)
 {
-	FRotator NewRotation = MyTurretMesh->GetComponentRotation() + FRotator(0.0f, Rotation, 0.0f);
-	MyTurretMesh->SetWorldRotation(NewRotation);
+	FRotator TargetRotation{ (TargetLocation - GetActorLocation()).Rotation() };
+	TargetRotation.Yaw -= 90;
+
+	const FRotator TurretRotationInterpolation = FMath::RInterpConstantTo(MyTurretMesh->GetComponentRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 150.f);
+
+	const FRotator TurretNewRotation = { 0, TurretRotationInterpolation.Yaw, 0 };
+
+	MyTurretMesh->SetWorldRotation(TurretNewRotation);
 }
 
 
-void ATowerPawn::Fire()
-{
-	GetWorld()->SpawnActor<AProjectileBase>(MyProjectileSpawnPoint->GetComponentLocation(), MyProjectileSpawnPoint->GetComponentRotation());
-}
+//void ATowerPawn::Fire()
+//{
+//	FActorSpawnParameters SpawnParams;
+//	SpawnParams.Owner = this;
+//	SpawnParams.Instigator = GetInstigator();
+//
+//	UBP_Projectile* Projectile = GetWorld()->SpawnActor<UBP_Projectile>(ProjectileBase, MyProjectileSpawnPoint->GetComponentLocation(), MyProjectileSpawnPoint->GetComponentRotation(), SpawnParams);
+//
+//	if (Projectile)
+//	{
+//		FVector LaunchDirection = MyProjectileSpawnPoint->GetComponentLocation();
+//		Projectile->FireInDirection(LaunchDirection);
+//	}
+//
+//}
 
 void ATowerPawn::AI_PlayerShooting(FVector TargetLocation)
 {
-	FVector MeshLocation = MyTurretMesh->GetComponentLocation();
-	FVector PawnLocation = TargetLocation;
+	 
+	Turn(TargetLocation);
 
-	FRotator TurretRotation = UKismetMathLibrary::FindLookAtRotation(PawnLocation, MeshLocation);
-
-    // Set the turret's relative rotation to face the player pawn
-    MyTurretMesh->AddLocalRotation(TurretRotation);
-
-    // Fire at the player pawn
     Fire();
-}
-void ATowerPawn::Tick(float DeltaTime)
-{
-
 }
