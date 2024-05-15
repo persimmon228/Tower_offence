@@ -34,6 +34,17 @@ void ATurrentPawn::BeginPlay()
 	
 }
 
+float ATurrentPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	HP -= DamageAmount;
+	if (HP<=0)
+	{
+		GameResultat();
+		Destroy();
+	}
+	return DamageAmount;
+}
+
 // Called every frame
 void ATurrentPawn::Tick(float DeltaTime)
 {

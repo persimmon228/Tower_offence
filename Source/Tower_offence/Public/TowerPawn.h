@@ -18,6 +18,8 @@ class TOWER_OFFENCE_API ATowerPawn : public ATurrentPawn
 
 public:
 
+	ATowerPawn();
+
 	UFUNCTION(BlueprintCallable, Category = "Moving")
 	void Turn(FVector TargetLocation);
 
@@ -28,6 +30,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Moving")
 	void AI_PlayerShooting(FVector TargetLocation);
 
+	UFUNCTION(BlueprintCallable, Category = "Instrument")
+	bool TowerCheck();
+
 protected:
 
+public:
+
+
 };
+
+static int CountOfTowers = 0;

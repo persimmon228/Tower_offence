@@ -3,6 +3,11 @@
 
 #include "TowerPawn.h"
 
+ATowerPawn::ATowerPawn()
+{
+	CountOfTowers++;
+}
+
 void ATowerPawn::Turn(FVector TargetLocation)
 {
 	FRotator TargetRotation{ (TargetLocation - GetActorLocation()).Rotation() };
@@ -39,3 +44,10 @@ void ATowerPawn::AI_PlayerShooting(FVector TargetLocation)
 
     Fire();
 }
+
+bool ATowerPawn::TowerCheck()
+{
+	return (CountOfTowers<=0);
+}
+
+
