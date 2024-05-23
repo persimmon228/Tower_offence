@@ -20,6 +20,7 @@ public:
 
 	ATowerPawn();
 
+
 	UFUNCTION(BlueprintCallable, Category = "Moving")
 	void Turn(FVector TargetLocation);
 
@@ -32,6 +33,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Instrument")
 	bool TowerCheck();
+
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 protected:
 

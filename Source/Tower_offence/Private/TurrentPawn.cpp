@@ -40,7 +40,6 @@ float ATurrentPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEve
 	if (HP<=0)
 	{
 		GameResultat();
-		Destroy();
 	}
 	return DamageAmount;
 }
