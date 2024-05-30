@@ -49,7 +49,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SceneComponent")
 	TObjectPtr<USceneComponent> MyProjectileSpawnPoint;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterComponent")
 	float HP = 100;
 
 

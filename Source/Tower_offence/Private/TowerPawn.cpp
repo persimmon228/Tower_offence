@@ -5,7 +5,7 @@
 
 ATowerPawn::ATowerPawn()
 {
-	CountOfTowers++;
+
 }
 
 void ATowerPawn::Turn(FVector TargetLocation)
@@ -47,7 +47,7 @@ void ATowerPawn::AI_PlayerShooting(FVector TargetLocation)
 
 bool ATowerPawn::TowerCheck()
 {
-	return (CountOfTowers<=1);
+	return true;
 }
 
 float ATowerPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -56,7 +56,7 @@ float ATowerPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent
 	if (HP <= 0)
 	{
 		GameResultat();
-		CountOfTowers--;
+
 		Destroy();
 	}
 	return DamageAmount;

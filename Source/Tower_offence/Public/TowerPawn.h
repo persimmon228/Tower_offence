@@ -43,4 +43,3 @@ public:
 
 };
 
-static int CountOfTowers = 0;

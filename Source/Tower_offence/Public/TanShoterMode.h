@@ -14,4 +14,8 @@ class TOWER_OFFENCE_API ATanShoterMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+
+	UFUNCTION(Exec, BlueprintImplementableEvent, Category = "Comands")
+	int32 ChangeColor(int32 color, int32 Tank);
 };
